@@ -1,10 +1,10 @@
 module.exports = {
-  mode: "JIT",
-  purge: ["../*.html"],
+  mode : "JIT",
+  purge : ["../views/*.html"],
   content: [],
   theme: {
     extend: {
-      colors: {
+      colors:{
         "blue1": "#1DA1F2",
         "blue2": "#2795D9",
         "blue": "#EFF9FF",
@@ -12,7 +12,7 @@ module.exports = {
         "light": "#AAB8C2",
         "lighter": "#E1E8ED",
         "lightest": "#F5F8FA",
-      }
+      }         
     },
   },
   plugins: [],
