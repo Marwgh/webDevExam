@@ -1,7 +1,7 @@
 from bottle import view , get 
 
-@get("/tweets")
-@view("tweets")
+@get("/signup")
+@view("signup")
 
 def _():
         

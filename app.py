@@ -4,7 +4,10 @@ from bottle import  default_app , get , view , run , static_file
 
 
 #################################################################
-
+import signup_get                                          #GET
+import logout_get                                          #GET
+import login_get                                           #GET
+import users_get                                           #GET
 import tweets_get                                          #GET
 #################################################################
 
