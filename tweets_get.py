@@ -5,10 +5,5 @@ from bottle import view , get , redirect , request ,response
 @view("tweets.html")
 
 def _():
-  
         
-    return dict(title=" - Tweets")
-
-  
-
-  
+    return 
