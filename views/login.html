@@ -1,33 +1,35 @@
 % include("header" , page_title=" - Login")
 
-<main class="text-white h-[85vh] w-5/12 mx-auto bg-black relative pt-[5vw]">
-  <h1 class="text-[2vw] absolute left-2 top-2">
+<main class=" h-[90vh] w-5/12 mx-auto bg-black relative pt-[5vw]">
+  <h1 class="text-[2vw] absolute left-2 top-2 text-white">
     Login
   </h1>
   <div>
-    <form class="grid mx-auto h-[40vh] w-5/6">
+    <form class="grid bg-white w-10/12 h-[40vh] mx-auto rounded relative">
 
-      <div>
+      <div class="grid p-[1vw]">
         % if error == "user_email":
         <h1>
           Please enter a valid email
         </h1>
         % end
         <label for="user_email">Email</label>
-        <input type="text" name="user_email" placeholder="email" value="{{get('user_email', '')}}">
+        <input type="text" name="user_email" placeholder="email" value="{{get('user_email', '')}}"
+          class="p-[1vw] rounded bg-gray-500 bg-opacity-40">
       </div>
 
 
-      <div>
+      <div class="grid p-[1vw]">
         % if error == "user_password":
         <h1>
           Please enter a valid password
         </h1>
         % end
         <label for="user_password">Password</label>
-        <input type="text" name="user_password" placeholder="password">
+        <input type="text" name="user_password" placeholder="password"
+          class="p-[1vw] rounded bg-gray-500 bg-opacity-40">
       </div>
-      <button>Login</button>
+      <button class="font-semibold bg-gray-400   bg-opacity-25 mt-[2vh]  w-full">Login</button>
     </form>
   </div>
 </main>

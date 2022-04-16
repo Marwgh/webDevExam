@@ -1,27 +1,30 @@
 % include("header" , page_title=" - Signup")
 
-<main class="text-white h-[85vh] w-5/12 mx-auto bg-black relative pt-[5vw]">
-  <h1 class="text-[2vw] absolute left-2 top-2">
+<main class="h-[90vh] w-5/12 mx-auto bg-black relative pt-[5vw]">
+  <h1 class="text-[2vw] absolute left-2 top-2 text-white ">
     Signup
   </h1>
   <div>
-    <form class=" grid mx-auto h-[40vh] w-5/6">
-      <div>
-        <label for="user-name">Full name</label>
-        <input type="text" name="user_name" placeholder="Full name">
+    <form class=" grid mx-auto h-[40vh] w-5/6 bg-white p-[1vw] rounded-md">
+      <div class="grid h-20 ">
+        <label for="user_name">Full name</label>
+        <input type="text" name="user_name" id="user_name" placeholder="Full name"
+          class="bg-gray-400 bg-opacity-40 rounded pl-[0.5vw] h-[5vh] placeholder-gray-500">
       </div>
 
-      <div>
-        <label for="user-email">Email</label>
-        <input type="text" name="user_email" placeholder="email">
+      <div class="grid h-20">
+        <label for="user_email">Email</label>
+        <input type="text" name="user_email" id="user_email" placeholder="email"
+          class="bg-gray-400 bg-opacity-40 rounded pl-[0.5vw] h-[5vh] placeholder-gray-500">
       </div>
 
-      <div>
-        <label for="user-password">Password</label>
-        <input type="text" name="user_password" placeholder="password">
+      <div class="grid h-20">
+        <label for="user_password">Password</label>
+        <input type="text" name="user_password" id="user_password" placeholder="password"
+          class="bg-gray-400 bg-opacity-40 rounded pl-[0.5vw] h-[5vh] placeholder-gray-500">
       </div>
 
-      <button>Sign up </button>
+      <button class="bg-gray-300 rounded" type="submit">Sign up </button>
     </form>
   </div>
 </main>

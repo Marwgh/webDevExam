@@ -1,9 +1,59 @@
 % include("header" , page_title=" - Tweets")
 
-<main class="text-white h-[85vh] w-5/12 mx-auto bg-black relative">
-  <h1 class="text-[2vw] absolute left-2 top-2">
-    See your tweets
-  </h1>
-  <div></div>
+<main class=" h-[90vh] w-5/12 mx-auto bg-black relative  overflow-y-scroll">
+  <h1 class="text-white pt-[2vw] pb-[2vw] ">Fake Tweets</h1>
+  <div>
+    <div id="createMain">
+      <form onsubmit="validate(sendTweet); return false  "
+        class="grid bg-white w-10/12 h-[30vh] mx-auto rounded relative">
+        <div class="p-[1vw] grid">
+          <label for="tweet_description">Tweet</label>
+          <textarea class="p-[1vw] rounded-sm bg-gray-500 bg-opacity-40" name="tweet_description" id="tweet_description"
+            cols="30" rows="4" placeholder="What is in your mind ?" data-validate="str" data-min="1" data-max="150"
+            class="bg-gray-400 bg-opacity-40 rounded pl-[0.5vw] h-[5vh] placeholder-gray-500"></textarea>
+        </div>
+        <div class="grid absolute left-[1vw] bottom-[3vw]">
+          <label for="input_image" class="cursor-pointer w-[10vw]">Pick image ?</label>
+          <input type="file" id="input_image" name="tweet_image" accept="image" class="hidden">
+        </div>
+
+        <input type="reset" class="absolute right-[1vw] bottom-[3vw] cursor-pointer">
+
+        <button class="font-semibold bg-gray-400 h-[2vw]  bg-opacity-25 mt-[2vh] place-self-end w-full">Create</button>
+      </form>
+    </div>
+    <div id="tweets">
+
+
+    </div>
+  </div>
+  </div>
+
+
 </main>
+
+<div id="updating_module" class="fixed bg-black bg-opacity-30 w-full h-full top-0 hidden">
+  <div id="close_update" class="absolute top-[15.5vw]  right-[25.5vw]">❌</div>
+  <form onsubmit="validate(sendTweet); return false  "
+    class="w-6/12 mx-auto bg-white rounded-lg h-[30vh] mt-[15vw] grid">
+    <div id="tweet_id_div" class="hidden">
+      <input type="text" name="tweet_id">
+    </div>
+    <div class="grid p-[1vw]">
+      <label for="tweet_text_updator">Tweet Text</label>
+      <input type="text" name="tweet_text_updator" id="tweet_text_updator" data-validate="str" data-min="1"
+        data-max="150" class="bg-gray-400 bg-opacity-40 rounded pl-[0.5vw] h-[5vh] placeholder-gray-500">
+    </div>
+    <div id="image_updating_div" class="grid  p-[1vw]">
+      <img src="" alt="">
+      <label for="check_delete_image">Want to remove this image ?</label>
+      <input type="checkbox" name="check_delete_image" id="check_delete_image">
+    </div>
+    <button class="font-semibold bg-gray-400  bg-opacity-25 mt-[2vh]  w-full">Update</button>
+
+  </form>
+
+</div>
+
+
 % include("footer")
