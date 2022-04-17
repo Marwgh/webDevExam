@@ -1,3 +1,38 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.tweet {
+  width: 37vw;
+  height: 10vw;
+  background: rgb(63, 63, 63);
+  margin: auto;
+  padding: 0.5vw;
+  border-radius: 0.5vw;
+  position: relative;
+  margin: 1vw;
+  color: white;
+}
+
+.tweet .Tweet_time {
+  position: absolute;
+  bottom: 1vw;
+  right: 1vw;
+  margin: 0;
+  font-size: 0.7vw;
+  color: grey;
+}
+
+.tweet article {
+  display: flex;
+  position: absolute;
+  top: 0.5vw;
+  right: 0.5vw;
+}
+
+.tweet img {
+  width: 10vw;
+  height: auto;
+  margin-top: 0.5vw;
+}

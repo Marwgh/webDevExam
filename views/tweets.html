@@ -23,6 +23,31 @@
       </form>
     </div>
     <div id="tweets">
+      % for tweet in tweets:
+      % if not tweet["image"] :
+      <section class="tweet" id="{{tweet['id']}}">
+        <p class="Tweet_time">{{tweet["iat"]}}</p>
+        <p>{{tweet["description"]}} </p>
+        <article>
+          <button onclick="delete_tweet(`{{tweet['id']}}`)">🗑️</button>
+          <button onclick="openModuleUpdate(`{{tweet['id']}}`,'false' , `{{tweet['description']}}` )">✏️</button>
+        </article>
+      </section>
+
+      % else :
+      <section class="tweet">
+        <p class="Tweet_time">{{tweet["iat"]}}</p>
+        <p>{{tweet["description"]}} </p>
+        <article>
+          <button onclick="delete_tweet(`{{tweet['id']}}`)">🗑️</button>
+          <button
+            onclick="openModuleUpdate(`{{tweet['id']}}`,'true' , `{{tweet['description']}}` ,`/image/{{tweet['image']}}` )">✏️</button>
+        </article>
+        <img src="/image/{{tweet['image']}}" alt="">
+      </section>
+      % end
+      % end
+
 
 
     </div>
@@ -33,8 +58,8 @@
 </main>
 
 <div id="updating_module" class="fixed bg-black bg-opacity-30 w-full h-full top-0 hidden">
-  <div id="close_update" class="absolute top-[15.5vw]  right-[25.5vw]">❌</div>
-  <form onsubmit="validate(sendTweet); return false  "
+  <div id="close_update" class="absolute top-[15.5vw]  right-[25.5vw] cursor-pointer">❌</div>
+  <form onsubmit="validate(updateTweet); return false  "
     class="w-6/12 mx-auto bg-white rounded-lg h-[30vh] mt-[15vw] grid">
     <div id="tweet_id_div" class="hidden">
       <input type="text" name="tweet_id">
@@ -44,8 +69,8 @@
       <input type="text" name="tweet_text_updator" id="tweet_text_updator" data-validate="str" data-min="1"
         data-max="150" class="bg-gray-400 bg-opacity-40 rounded pl-[0.5vw] h-[5vh] placeholder-gray-500">
     </div>
-    <div id="image_updating_div" class="grid  p-[1vw]">
-      <img src="" alt="">
+    <div id="image_updating_div" class="hidden p-[1vw]">
+      <img src="" alt="" class="w-[10vw] h-auto">
       <label for="check_delete_image">Want to remove this image ?</label>
       <input type="checkbox" name="check_delete_image" id="check_delete_image">
     </div>

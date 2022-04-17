@@ -541,6 +541,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-top: 15vw;
 }
 
+.flex {
+  display: flex;
+}
+
 .grid {
   display: grid;
 }
@@ -583,6 +587,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .h-full {
   height: 100%;
+}
+
+.h-auto {
+  height: auto;
 }
 
 .w-full {
@@ -759,6 +767,40 @@ Ensure the default browser behavior of the `hidden` attribute.
 .placeholder-gray-500::placeholder {
   --tw-placeholder-opacity: 1;
   color: rgb(107 114 128 / var(--tw-placeholder-opacity));
+}
+
+.tweet {
+  width: 37vw;
+  height: 10vw;
+  background: rgb(63, 63, 63);
+  margin: auto;
+  padding: 0.5vw;
+  border-radius: 0.5vw;
+  position: relative;
+  margin: 1vw;
+  color: white;
+}
+
+.tweet .Tweet_time {
+  position: absolute;
+  bottom: 1vw;
+  right: 1vw;
+  margin: 0;
+  font-size: 0.7vw;
+  color: grey;
+}
+
+.tweet article {
+  display: flex;
+  position: absolute;
+  top: 0.5vw;
+  right: 0.5vw;
+}
+
+.tweet img {
+  width: 10vw;
+  height: auto;
+  margin-top: 0.5vw;
 }
 
 .hover\:scale-110:hover {

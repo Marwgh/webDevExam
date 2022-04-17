@@ -6,6 +6,47 @@ function toggleTweetModal() {
   _one("#tweetModal").classList.toggle("hidden")
 }
 
+async function signUp() {
+  console.log("sign iup")
+  const form = event.target
+  // Get the button, set the data-await, and disable it
+  const connection = await fetch("/signup", {
+    method: "POST",
+    body: new FormData(form)
+  })
+
+  if (!connection.ok) {
+    return
+  }
+
+  connection_text = await connection.text();
+  console.log(connection_text)
+  if (connection_text == "valide") {
+    window.location.href = "/login";
+  }
+  /** */
+
+}
+
+async function logIn() {
+  console.log("iam login in");
+  const form = event.target
+  // Get the button, set the data-await, and disable it
+  const connection = await fetch("/login", {
+    method: "POST",
+    body: new FormData(form)
+  })
+
+  if (!connection.ok) {
+    return
+  }
+
+
+  connection_text = await connection.text();
+  console.log(connection_text)
+  window.location.href = connection_text;
+
+}
 
 async function delete_tweet(tweet_id) {
   //_one("#" + tweet_id).remove()
@@ -52,26 +93,23 @@ async function sendTweet() {
   if (tweet_image == "true") {
     tweet = `
     <section
-    class="mt-[1vw] w-10/12 h-[10vw] bg-gray-500 bg-opacity-50 mx-auto p-[0.5vw] rounded-md relative text-white"
-    id="${tweet_id}">
-    <p class="absolute bottom-[1vw] right-[1vw] text-[0.7vw] ">${tweet_iat}</p>
-    <p class="mt-[2vw]">${_one("textarea", form).value}</p>
-    <article class="flex absolute top-[0.5vw] right-[0.5vw]">
-      <button onclick="delete_tweet('${tweet_id}')">🗑️</button>
-      <button onclick="openModuleUpdate('${tweet_id}','false' ,'${_one(" textarea", form).value}')">✏️</button>
-    </article>
-    <img src="/image/${image_path.substring(image_path.lastIndexOf(" \\") + 1)}" alt=""
-      class="w-[10vw] h-auto mt-[0.5vw]">
-  </section>
+        class="tweet"
+        id="${tweet_id}">
+        <p class="Tweet_time">${tweet_iat}</p>
+        <p class="mt-[2vw]">${_one("textarea", form).value}</p>
+        <article >
+          <button onclick="delete_tweet('${tweet_id}')">🗑️</button>
+          <button onclick="openModuleUpdate('${tweet_id}','true' ,'${_one(" textarea", form).value}' , '/image/${image_path.substring(image_path.lastIndexOf("\\") + 1)}')">✏️</button>
+        </article>
+        <img src="/image/${image_path.substring(image_path.lastIndexOf("\\") + 1)}" alt="">
+      </section>
     `
   } else {
     tweet = `
-    <section
-    class="mt-[1vw] w-10/12 h-[10vw] bg-gray-500 bg-opacity-50 mx-auto p-[0.5vw] rounded-md relative text-white"
-    id="${tweet_id}">
-    <p class="absolute bottom-[1vw] right-[1vw] text-[0.7vw] ">${tweet_iat}</p>
+    <section class="tweet" id="${tweet_id}">
+    <p class="Tweet_time">${tweet_iat}</p>
     <p class="mt-[2vw]">${_one("textarea", form).value}</p>
-    <article class="flex absolute top-[0.5vw] right-[0.5vw]">
+    <article >
       <button onclick="delete_tweet('${tweet_id}')">🗑️</button>
       <button onclick="openModuleUpdate('${tweet_id}','false' ,'${_one(" textarea", form).value}')">✏️</button>
     </article>
@@ -133,6 +171,7 @@ async function updateTweet() {
         _one("#updating_module").style.display = " none";
 
 
+
       }
 
     }
@@ -146,12 +185,21 @@ async function updateTweet() {
 
 
 
+
 function openModuleUpdate(tweet_id, is_image, tweet_text, image_path) {
   console.log(tweet_id, is_image, tweet_text, image_path)
-  if (is_image == "true") {
+  if (is_image === "true") {
     console.log("zs")
     _one("#updating_module #image_updating_div").style.display = "block";
     _one(" #image_updating_div img").setAttribute("src", image_path);
+    _one("#image_updating_div").style.display = "flex";
+    _one("#image_updating_div").style["align-items"] = "center";
+    _one("#image_updating_div > input[type=checkbox]").checked = false;
+
+
+  } else if (is_image === "false") {
+    _one("#updating_module #image_updating_div").style.display = "none";
+
   }
   _one("#tweet_id_div input[type=text]").value = tweet_id;
 
@@ -165,7 +213,9 @@ function openModuleUpdate(tweet_id, is_image, tweet_text, image_path) {
 
 function closeModuleUpdate() {
   _one("#updating_module").style.display = " none";
+
   console.log("yes");
 }
+
 
 

@@ -5,7 +5,7 @@
     Login
   </h1>
   <div>
-    <form class="grid bg-white w-10/12 h-[40vh] mx-auto rounded relative">
+    <form class="grid bg-white w-10/12 h-[40vh] mx-auto rounded relative" onsubmit="validate(logIn); return false ">
 
       <div class="grid p-[1vw]">
         % if error == "user_email":
@@ -15,7 +15,7 @@
         % end
         <label for="user_email">Email</label>
         <input type="text" name="user_email" placeholder="email" value="{{get('user_email', '')}}"
-          class="p-[1vw] rounded bg-gray-500 bg-opacity-40">
+          class="p-[1vw] rounded bg-gray-500 bg-opacity-40" data-validate="email">
       </div>
 
 
