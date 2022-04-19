@@ -27,7 +27,7 @@ def _():
       if user["password"] == user_password and user["email"] == user_email:
         ###############   MAKING THE SESSION AND COOKIE  ##################
         user_session_id = str(uuid.uuid4())
-        session = {"user_id" : user_session_id, "user_email" : user_email, "iat" : int(time.time())}
+        session = {"user_session_id" : user_session_id,"user_id":user["id"], "user_email" : user_email, "iat" : int(time.time())}
         g.SESSIONS.append(session)
         print("#"*30)
         print(g.SESSIONS)

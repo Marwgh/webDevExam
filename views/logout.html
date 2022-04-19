@@ -4,8 +4,8 @@
   <h1 class="text-[2vw] absolute left-2 top-2">
     Logout
   </h1>
-  <div class="absolute top-16 left-16">
-    Would you like to <a class="cursor-pointer underline decoration-theme">logout</a> ?
-  </div>
+  <form class="absolute top-16 left-16" onsubmit="logOut(); return false">
+    Would you like to <button class="cursor-pointer underline decoration-theme">logout</button> ?
+  </form>
 </main>
 % include("footer")

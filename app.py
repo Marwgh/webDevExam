@@ -9,6 +9,7 @@ import tweet_delete                                        #DELETE
 import tweet_post                                          #POST
 import signup_post                                         #POST
 import login_post                                          #POST
+import logout_post                                         #POST
 
 import tweet_put                                           #PUT
 

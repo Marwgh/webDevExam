@@ -48,6 +48,25 @@ async function logIn() {
 
 }
 
+async function logOut() {
+  console.log("iam login in");
+  const form = event.target
+  // Get the button, set the data-await, and disable it
+  const connection = await fetch("/logingout", {
+    method: "POST",
+    body: new FormData(form)
+  })
+
+  if (!connection.ok) {
+    return
+  }
+
+  connection_text = await connection.text();
+  console.log(connection_text)
+  window.location.href = connection_text;
+
+}
+
 async function delete_tweet(tweet_id) {
   //_one("#" + tweet_id).remove()
   //event.target.parentElement.parentElement.parentElement.parentElement.remove()

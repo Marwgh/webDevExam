@@ -18,7 +18,7 @@ def _():
         if not session['user_id'] == user_info["user_id"]:
             return redirect("/login?error=invalidS")
     try:
-        return dict(users=g.USERS , sessions=g.SESSIONS)
+        return dict(users=g.USERS , tweets = g.TWEETS)
 
     except Exception as ex:
         print(ex)

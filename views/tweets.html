@@ -22,8 +22,10 @@
         <button class="font-semibold bg-gray-400 h-[2vw]  bg-opacity-25 mt-[2vh] place-self-end w-full">Create</button>
       </form>
     </div>
+
     <div id="tweets">
       % for tweet in tweets:
+      % if user_id == tweet["user_id"]:
       % if not tweet["image"] :
       <section class="tweet" id="{{tweet['id']}}">
         <p class="Tweet_time">{{tweet["iat"]}}</p>
@@ -45,6 +47,7 @@
         </article>
         <img src="/image/{{tweet['image']}}" alt="">
       </section>
+      % end
       % end
       % end
 

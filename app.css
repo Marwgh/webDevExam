@@ -528,6 +528,22 @@ Ensure the default browser behavior of the `hidden` attribute.
   right: 25.5vw;
 }
 
+.left-\[-2vw\] {
+  left: -2vw;
+}
+
+.left-\[-5vw\] {
+  left: -5vw;
+}
+
+.left-\[-12vw\] {
+  left: -12vw;
+}
+
+.left-\[-11vw\] {
+  left: -11vw;
+}
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -541,8 +557,24 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-top: 15vw;
 }
 
-.flex {
-  display: flex;
+.mt-\[1vw\] {
+  margin-top: 1vw;
+}
+
+.mt-5 {
+  margin-top: 1.25rem;
+}
+
+.mt-20 {
+  margin-top: 5rem;
+}
+
+.mt-\[2vw\] {
+  margin-top: 2vw;
+}
+
+.mt-\[5vw\] {
+  margin-top: 5vw;
 }
 
 .grid {
@@ -682,9 +714,23 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(156 163 175 / var(--tw-bg-opacity));
 }
 
-.bg-gray-300 {
+.bg-red-100 {
   --tw-bg-opacity: 1;
-  background-color: rgb(209 213 219 / var(--tw-bg-opacity));
+  background-color: rgb(254 226 226 / var(--tw-bg-opacity));
+}
+
+.bg-input {
+  background-color: rgba(128, 128, 128, 0.486);
+}
+
+.bg-purple-300 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(216 180 254 / var(--tw-bg-opacity));
+}
+
+.bg-purple-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(168 85 247 / var(--tw-bg-opacity));
 }
 
 .bg-opacity-40 {
@@ -703,6 +749,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding: 1vw;
 }
 
+.p-\[0\.5vw\] {
+  padding: 0.5vw;
+}
+
 .pt-\[5vw\] {
   padding-top: 5vw;
 }
@@ -717,6 +767,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .pb-\[2vw\] {
   padding-bottom: 2vw;
+}
+
+.pt-\[1vw\] {
+  padding-top: 1vw;
+}
+
+.pt-\[7vw\] {
+  padding-top: 7vw;
 }
 
 .font-\[roboto\] {
@@ -768,6 +826,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-placeholder-opacity: 1;
   color: rgb(107 114 128 / var(--tw-placeholder-opacity));
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;900&display=swap');
 
 .tweet {
   width: 37vw;
