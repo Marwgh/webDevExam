@@ -8,8 +8,10 @@ import g
 
 def _():
     if len(g.SESSIONS) < 1 :
+        response.status =400
         return redirect("/login?error=invalidS")
     if not (request.get_cookie("jwt")) :
+        response.status =400
         return redirect("/login?error=invalidS")
 
     encoded_jwt = request.get_cookie("jwt")
@@ -17,6 +19,7 @@ def _():
 
     for  session in g.SESSIONS :
         if not session['user_id'] == user_info["user_id"]:
+            response.status =400
             return redirect("/login?error=invalidS")
     try: 
         
@@ -25,8 +28,8 @@ def _():
         print(user_info)
         print(g.SESSIONS)
 
-
-        return  dict(user_email=user_info["user_email"])
+        response.status = 200
+        return  dict(user_email=user_info["user_email"], sessions = g.SESSIONS)
         
     except Exception as ex:
         print(ex)

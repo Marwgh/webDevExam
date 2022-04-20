@@ -6,21 +6,27 @@ import g
 @post("/signup")
 def _():
   if not request.forms.get("user_name"):
+    response.status = 400
     return redirect("/signup")
   if not request.forms.get("user_email"):
+    response.status = 400
     return redirect("/signup")
   user_email = request.forms.get("user_email")
   
   for user in g.USERS :
     if request.forms.get("user_email") == user["email"]:
+      response.status = 400
       return redirect("/signup")
 
 
   if not request.forms.get("user_password"):
+    response.status = 400
     return redirect("/signup")
   if len(request.forms.get("user_password")) < 6 :
+    response.status = 400
     return redirect("/signup")
   if len(request.forms.get("user_password")) > 20 :
+    response.status = 400
     return redirect("/signup")
 
   
@@ -34,7 +40,7 @@ def _():
     print(g.USERS)
     
     
-
+    response.status=200
     return "valide"
 
   except Exception as ex:

@@ -7,8 +7,10 @@ def _():
   print("#"*40)
   print("# yes #")
   if not request.forms.get('tweet_text_updator'):
+    response.status = 400
     return redirect("/tweet?error=invalidTweet")
   if not request.forms.get('tweet_id'):
+    response.status = 400 
     return redirect("/tweet?error=invalidTweet")
 
   tweet_image_delete = "false"
@@ -26,6 +28,7 @@ def _():
 
   print(updated_description , tweet_id )
   if not ( updated_description ) :
+    response.status = 400
     return redirect("/tweet?error=invalidTweet")
 
   
@@ -41,7 +44,7 @@ def _():
             tweet["image"] = ""
           print(tweet)
     
-
+    response.status = 200
     return dict(user_id = user_info["user_id"] , tweets=g.TWEETS)
 
 

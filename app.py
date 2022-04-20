@@ -1,4 +1,4 @@
-from bottle import  default_app , get , view , run , static_file
+from bottle import  default_app , get , view , run , static_file , response
 import g
 
 
@@ -13,6 +13,7 @@ import logout_post                                         #POST
 
 import tweet_put                                           #PUT
 
+import admin_get                                           #GET
 import signup_get                                          #GET
 import logout_get                                          #GET
 import login_get                                           #GET
@@ -23,7 +24,8 @@ import tweets_get                                          #GET
 @get("/")
 @view("index")
 def _():
-  return dict(tweets = g.TWEETS)
+
+  return dict(tweets = g.TWEETS , sessions = g.SESSIONS)
 #################################################################
 
 @get("/validator.js")

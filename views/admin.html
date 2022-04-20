@@ -1,34 +1,31 @@
-% for session in sessions :
-% if session["user_id"] == "admin1" :
 % include("header" , page_title=" - Home" , admin_link ="yes")
-% else :
-% include("header" , page_title=" - Home" , admin_link ="no")
-% end
-% end
 
-% if not sessions :
-% include("header" , page_title=" - Home" , admin_link ="no")
-% end
 
 <main class="text-white h-[90vh] w-5/12 mx-auto bg-black relative ">
-  <h1 class="absolute left-[-10vw] top-[2vw] text-[3vw]">
-    Welcom To Fake Twitter
+  <h1 class="absolute left-[-15vw] top-[2vw] text-[3vw]">
+    Welcom to the admin panel
   </h1>
 
   <div class="pt-[7vw] overflow-y-scroll h-full">
     % for tweet in tweets:
     % if not tweet["image"] :
-    <section class="tweet">
+    <section class="tweet" id="{{tweet['id']}}">
       <p class="Tweet_time">{{tweet["iat"]}}</p>
       <p>{{tweet["description"]}} </p>
+      <article>
+        <button onclick="delete_tweet(`{{tweet['id']}}`)">🗑️</button>
+      </article>
 
     </section>
 
     % else :
-    <section class="tweet">
+    <section class="tweet" id="{{tweet['id']}}">
       <p class="Tweet_time">{{tweet["iat"]}}</p>
       <p>{{tweet["description"]}} </p>
       <img src="/image/{{tweet['image']}}" alt="">
+      <article>
+        <button onclick="delete_tweet(`{{tweet['id']}}`)">🗑️</button>
+      </article>
     </section>
     % end
     % end

@@ -10,12 +10,20 @@
 </head>
 
 <body class="bg-gray-500 relative font-[roboto] font-semibold">
+  % if admin_link == "yes":
   <nav
-    class="w-full bg-theme h-[8vh] grid grid-cols-6 content-center justify-items-center text-white text-[1.8vw] font-semibold">
-    <a href="/" class="hover:scale-110" alt="">Home</a>
-    <a href="/tweets" class="hover:scale-110" alt="">Tweets</a>
-    <a href="/users" class="hover:scale-110" alt="">Users</a>
-    <a href="/signup" class="hover:scale-110" alt="">Signup</a>
-    <a href="/login" class="hover:scale-110" alt="">Login</a>
-    <a href="/logout" class="hover:scale-110" alt="">Logout</a>
-  </nav>
+    class="w-full bg-theme h-[8vh] grid grid-cols-7 content-center justify-items-center text-white text-[1.8vw] font-semibold">
+    % else :
+    <nav
+      class="w-full bg-theme h-[8vh] grid grid-cols-6 content-center justify-items-center text-white text-[1.8vw] font-semibold">
+      % end
+      <a href="/" class="hover:scale-110" alt="">Home</a>
+      <a href="/tweets" class="hover:scale-110" alt="">Tweets</a>
+      <a href="/users" class="hover:scale-110" alt="">Users</a>
+      % if admin_link == "yes":
+      <a href="/adminPanel" class="hover:scale-110" alt="">Admin Panel</a>
+      % end
+      <a href="/signup" class="hover:scale-110" alt="">Signup</a>
+      <a href="/login" class="hover:scale-110" alt="">Login</a>
+      <a href="/logout" class="hover:scale-110" alt="">Logout</a>
+    </nav>

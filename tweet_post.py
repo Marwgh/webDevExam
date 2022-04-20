@@ -15,11 +15,14 @@ import os
 def _():
     print("#"*60)
     if not request.forms.get("tweet_description") :
+      response.status = 400
       return redirect("/tweet")
     
     if len(g.SESSIONS) < 1 :
+      response.status = 400
       redirect("/login?error=invalidS")
     if not (request.get_cookie("jwt")) :
+      response.status = 400
       redirect("/login?error=invalidS")
 
     encoded_jwt = request.get_cookie("jwt")
@@ -55,6 +58,7 @@ def _():
         g.TWEETS.append(tweet)
 
         is_image = "true"
+        response.status = 200
         return id , is_image  , issue_time 
 
 
@@ -67,7 +71,7 @@ def _():
       tweet={ "description" : description , "id": id , "iat" : issue_time ,"image": ""  , "user_id" :user_info["user_id"]}
       g.TWEETS.append(tweet)
 
-
+      response.status = 200
       return id  , is_image , issue_time
 
 

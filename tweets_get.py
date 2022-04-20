@@ -7,8 +7,10 @@ import g
 
 def _():
     if len(g.SESSIONS) < 1 :
+        response.status = 400
         redirect("/login?error=invalidS")
     if not (request.get_cookie("jwt")) :
+        response.status = 400
         redirect("/login?error=invalidS")
 
     encoded_jwt = request.get_cookie("jwt")
@@ -16,9 +18,10 @@ def _():
 
     for session in g.SESSIONS :
         if not session['user_id'] == user_info["user_id"]:
+            response.status = 400
             redirect("/login?error=invalidS")
     try:
-        return dict(tweets=g.TWEETS, user_id = user_info["user_id"] )
+        return dict(tweets=g.TWEETS, user_id = user_info["user_id"] , sessions = g.SESSIONS )
 
     
     except Exception as ex:

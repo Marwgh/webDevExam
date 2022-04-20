@@ -8,6 +8,7 @@ def _(tweet_id):
 
 
   if not tweet_id :
+    response.status = 400
     return redirect("/tweet")
   
   try:
@@ -16,6 +17,7 @@ def _(tweet_id):
     print("#"*30)
     for  index ,tweet in enumerate(g.TWEETS):
       if tweet["id"] == tweet_id:
+          response.status = 200
           g.TWEETS.pop(index)
           
   except Exception as ex:

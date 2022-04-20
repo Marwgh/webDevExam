@@ -1,5 +1,14 @@
-% include("header" , page_title=" - Tweets")
+% for session in sessions :
+% if session["user_id"] == "admin1" :
+% include("header" , page_title=" - Home" , admin_link ="yes")
+% else :
+% include("header" , page_title=" - Home" , admin_link ="no")
+% end
+% end
 
+% if not sessions :
+% include("header" , page_title=" - Home" , admin_link ="no")
+% end
 <main class=" h-[90vh] w-5/12 mx-auto bg-black relative  overflow-y-scroll">
   <h1 class="text-white pt-[2vw] pb-[2vw] ">Fake Tweets</h1>
   <div>

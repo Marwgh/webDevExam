@@ -1,5 +1,14 @@
-% include("header" , page_title=" - Signup")
+% for session in sessions :
+% if session["user_id"] == "admin1" :
+% include("header" , page_title=" - Home" , admin_link ="yes")
+% else :
+% include("header" , page_title=" - Home" , admin_link ="no")
+% end
+% end
 
+% if not sessions :
+% include("header" , page_title=" - Home" , admin_link ="no")
+% end
 <main class="h-[90vh] w-5/12 mx-auto bg-black relative pt-[5vw]">
   <h1 class="text-[2vw] absolute left-2 top-2 text-white ">
     Signup
