@@ -24,7 +24,6 @@ import tweets_get                                          #GET
 @get("/")
 @view("index")
 def _():
-
   return dict(tweets = g.TWEETS , sessions = g.SESSIONS)
 #################################################################
 
