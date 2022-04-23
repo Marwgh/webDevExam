@@ -21,10 +21,12 @@ def _():
       if not request.forms.get("user_password"):
         response.status = 400
         return f"/login?error=user_password&user_email={user_email} "
-
-      if len(g.SESSIONS) > 0 :
+      if not (request.get_cookie("jwt")) :
         g.SESSIONS = []
-        return "/login"
+        
+        
+      if len(g.SESSIONS) > 0 :
+        return "/logout"
       user_password = request.forms.get("user_password")
       print("**************yes")
       print("**************")
