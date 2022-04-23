@@ -5,6 +5,11 @@
 
 
 
+* {
+  box-sizing: content-box;
+
+}
+
 .tweet {
   width: 37vw;
   height: 10vw;
