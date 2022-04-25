@@ -1,4 +1,5 @@
 from bottle import view , get ,request , response
+import jwt
 import g
 @get("/login")
 @view("login")
@@ -17,8 +18,17 @@ def _():
             response.status = 400
             user_email = request.params.get("user_email")
         
+        if request.get_cookie("jwt") :
+            encoded_jwt = request.get_cookie("jwt")
+            user_info = jwt.decode(encoded_jwt ,  "theKey" , algorithms="HS256") 
+            if user_info == "" :
+                user_id = ""
+            else :
+                user_id = user_info["user_id"]
+        else :
+            user_id =""
         response.status = 200
-        return  dict(error=error , user_email=user_email , sessions = g.SESSIONS)
+        return  dict(error=error , user_email=user_email , user_id=user_id)
 
     except Exception as ex:
         print(ex)

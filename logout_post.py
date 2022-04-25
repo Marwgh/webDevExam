@@ -14,6 +14,8 @@ def _():
     session = user_info
     g.SESSIONS.remove(session)
     response.status = 200
+    response.set_cookie("jwt", "")
+
     return "/"
   except Exception as ex:
       print(ex)

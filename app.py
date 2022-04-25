@@ -1,5 +1,6 @@
-from bottle import  default_app , get , view , run , static_file , response
+from bottle import  default_app , get , view , run , static_file , response , request
 import g
+import jwt
 
 
 
@@ -24,7 +25,17 @@ import tweets_get                                          #GET
 @get("/")
 @view("index")
 def _():
-  return dict(tweets = g.TWEETS , sessions = g.SESSIONS)
+  if request.get_cookie("jwt") :
+    encoded_jwt = request.get_cookie("jwt")
+    user_info = jwt.decode(encoded_jwt ,  "theKey" , algorithms="HS256") 
+    if user_info == "" :
+      user_id = ""
+    else :
+      user_id = user_info["user_id"]
+  else :
+    user_id=""
+
+  return dict(tweets = g.TWEETS , user_id = user_id)
 #################################################################
 
 @get("/validator.js")

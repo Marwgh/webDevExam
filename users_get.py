@@ -16,13 +16,23 @@ def _():
     encoded_jwt = request.get_cookie("jwt")
     user_info = jwt.decode(encoded_jwt ,  "theKey" , algorithms="HS256") 
 
-    for  session in g.SESSIONS :
-        if not session['user_id'] == user_info["user_id"]:
+    for index, session in enumerate(g.SESSIONS) :
+        if session['user_id'] == user_info["user_id"]:
+            print("success")
+        elif index == (len(g.SESSIONS)-1) :
+            print(index)
             response.status = 400
             return redirect("/login?error=invalidS")
-    try:
+        print(index)
         
-        return dict(users=g.USERS , tweets = g.TWEETS , sessions = g.SESSIONS)
+
+    try:
+        if user_info == "" :
+            user_id = ""
+        else :
+            user_id = user_info["user_id"]
+        
+        return dict(users=g.USERS , tweets = g.TWEETS , user_id =user_id)
 
     except Exception as ex:
         print(ex)
