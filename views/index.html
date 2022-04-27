@@ -7,15 +7,16 @@
 
 
 
-<main class="text-white h-[90vh] w-5/12 mx-auto bg-black relative ">
-  <h1 class="absolute left-[-10vw] top-[2vw] text-[3vw]">
+<main class="text-white h-[90vh] w-5/12 mx-auto bg-black relative  ">
+  <h1 class="absolute left-[-20vw] top-[2vw] text-[3vw] z-10">
     Welcom To Fake Twitter
   </h1>
-
-  <div class="pt-[7vw] overflow-y-scroll h-full">
+  <div class="h-[10vh]"></div>
+  <div class=" overflow-y-scroll h-[80vh]">
     % for tweet in tweets:
     % if not tweet["image"] :
     <section class="tweet">
+      <p>@{{tweet["user_name"]}}</p>
       <p class="Tweet_time">{{tweet["iat"]}}</p>
       <p>{{tweet["description"]}} </p>
 
@@ -23,6 +24,7 @@
 
     % else :
     <section class="tweet">
+      <p>@{{tweet["user_name"]}}</p>
       <p class="Tweet_time">{{tweet["iat"]}}</p>
       <p>{{tweet["description"]}} </p>
       <img src="/image/{{tweet['image']}}" alt="">

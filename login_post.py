@@ -10,16 +10,16 @@ import uuid
 def _():
   try:
       if not request.forms.get("user_email"):
-        response.status = 400
+        response.status = 401
         return "/login?error=user_email"
       if not re.match( g.REGEX_EMAIL , request.forms.get("user_email")):
-        response.status = 400
+        response.status = 401
         return "/login?error=user_email"
 
       user_email = request.forms.get("user_email")
 
       if not request.forms.get("user_password"):
-        response.status = 400
+        response.status = 401
         return f"/login?error=user_password&user_email={user_email} "
     
         
@@ -31,7 +31,7 @@ def _():
       if user_password == "adminPassword" and user_email == "admin@admin.com":
           ###############   MAKING THE SESSION AND COOKIE FOR ADMIN  #################
           user_session_id = str(uuid.uuid4())
-          session = {"user_session_id" : user_session_id,"user_id":"admin1", "user_email" : "admin@admin.com", "iat" : int(time.time())}
+          session = {"user_session_id" : user_session_id,"user_id":"admin1", "user_email" : "admin@admin.com", "iat" : int(time.time()) , "user_name" : "Admin"}
           g.SESSIONS.append(session)
           print("#"*30)
           print(g.SESSIONS)
@@ -44,7 +44,7 @@ def _():
         if user["password"] == user_password and user["email"] == user_email:
           ###############   MAKING THE SESSION AND COOKIE  ##################
           user_session_id = str(uuid.uuid4())
-          session = {"user_session_id" : user_session_id,"user_id":user["id"], "user_email" : user_email, "iat" : int(time.time())}
+          session = {"user_session_id" : user_session_id,"user_id":user["id"], "user_email" : user_email, "iat" : int(time.time()) , "user_name" :user["name"] }
           g.SESSIONS.append(session)
           print("#"*30)
           print(g.SESSIONS)
@@ -57,7 +57,7 @@ def _():
 
         
         
-      response.status = 400
+      response.status = 401
       return f"/login?error=user_password&user_email={user_email}"
 
   except Exception as ex:

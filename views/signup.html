@@ -10,7 +10,7 @@
   <div>
     <form class=" grid mx-auto h-[40vh] w-5/6 bg-white  rounded-md" onsubmit="validate(signUp); return false ">
       <div class="grid h-20  p-[1vw]">
-        <label for="user_name">Full name</label>
+        <label for="user_name">Full name ( min-1 max-50 )</label>
         <input type="text" name="user_name" id="user_name" placeholder="Full name"
           class="bg-gray-400 bg-opacity-40 rounded pl-[0.5vw] h-[5vh] placeholder-gray-500" data-validate="str"
           data-min="1" data-max="50">
@@ -23,7 +23,7 @@
       </div>
 
       <div class="grid h-20 p-[1vw]">
-        <label for="user_password">Password</label>
+        <label for="user_password">Password ( min-6 max-50 )</label>
         <input type="password" name="user_password" id="user_password" placeholder="password"
           class="bg-gray-400 bg-opacity-40 rounded pl-[0.5vw] h-[5vh] placeholder-gray-500" data-validate="str"
           data-min="6" data-max="50">

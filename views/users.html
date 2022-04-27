@@ -4,25 +4,28 @@
 % include("header" , page_title=" - Home" , admin_link ="no")
 % end
 <main class="text-white h-[90vh] w-5/12 mx-auto bg-black relative">
-  <h1 class="text-[2vw] absolute left-[-11vw] top-2">
+  <h1 class="text-[2vw] absolute left-[-12vw] top-2">
     See the users
   </h1>
-  <div class=" p-[1vw] pt-[5vw] h-full overflow-y-scroll">
+  <div class="h-[10vh]"></div>
+  <div class="  h-[80vh] overflow-y-scroll">
     % for user in users :
-    <div id="{{user['id']}}" class="bg-purple-500  bg-opacity-25 rounded-lg mt-[5vw]">
+    <div id="{{user['id']}}" class="bg-purple-500  bg-opacity-25 rounded-lg ">
       <p>@{{user["name"]}}</p>
       <div>
-        tweets:
+
         % for tweet in tweets:
         % if user["id"] == tweet["user_id"]:
         % if not tweet["image"] :
         <section class="tweet" id="{{tweet['id']}}">
+          <p>@{{tweet["user_name"]}}</p>
           <p class="Tweet_time">{{tweet["iat"]}}</p>
           <p>{{tweet["description"]}} </p>
         </section>
 
         % else :
         <section class="tweet">
+          <p>@{{tweet["user_name"]}}</p>
           <p class="Tweet_time">{{tweet["iat"]}}</p>
           <p>{{tweet["description"]}} </p>
           <img src="/image/{{tweet['image']}}" alt="">

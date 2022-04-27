@@ -12,11 +12,8 @@
     <form class="grid bg-white w-10/12 h-[40vh] mx-auto rounded relative" onsubmit="validate(logIn); return false ">
 
       <div class="grid p-[1vw]">
-        % if error == "user_email":
-        <h1>
-          Please enter a valid email
-        </h1>
-        % end
+        <p id="error_message" class="error_p">Your email or password might wrong please retry</p>
+
         <label for="user_email">Email</label>
         <input type="text" name="user_email" placeholder="email" value="{{get('user_email', '')}}"
           class="p-[1vw] rounded bg-gray-500 bg-opacity-40" data-validate="email">
@@ -24,11 +21,7 @@
 
 
       <div class="grid p-[1vw]">
-        % if error == "user_password":
-        <h1>
-          Please enter a valid password
-        </h1>
-        % end
+
         <label for="user_password">Password</label>
         <input type="password" name="user_password" placeholder="password"
           class="p-[1vw] rounded bg-gray-500 bg-opacity-40" data-validate="str" data-min="6" data-max="50">

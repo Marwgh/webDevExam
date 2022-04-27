@@ -37,9 +37,17 @@ async function logIn() {
     body: new FormData(form)
   })
 
+  console.log(await connection.status)
+  if (await connection.status == 401) {
+    _one("#error_message").style.display = "block";
+  } else if (await connection.status == 200) {
+    _one("#error_message").style.display = "none";
+  }
   if (!connection.ok) {
     return
   }
+
+
 
 
   connection_text = await connection.text();
@@ -101,36 +109,39 @@ async function sendTweet() {
   }
   console.log(await connection);
   const connection_text = await connection.text();/* tweet id text*/
+  const connection_object = JSON.parse(connection_text);
+  const tweet_infos = connection_object.tweet;
+  console.log(connection_object.user_name);
   const tweet_id = connection_text.slice(0, 36);
   const tweet_image = connection_text.slice(36, 40);
   const tweet_iat = connection_text.slice(40)
   console.log(connection_text, tweet_id, tweet_image, tweet_iat);
 
-  const image_path = _one("input[type=file]", form).value.replaceAll(" ", "-").replaceAll("’", "").replaceAll("é", "e").replaceAll("(", "").replaceAll(")", "").trim()
   /*SUCCES*/
   let tweet = ''
-  if (tweet_image == "true") {
+  if (connection_object.is_image == "true") {
     tweet = `
     <section
-        class="tweet"
-        id="${tweet_id}">
-        <p class="Tweet_time">${tweet_iat}</p>
-        <p class="mt-[2vw]">${_one("textarea", form).value}</p>
+        class="tweet" id="${tweet_infos.id}">
+        <p>@${tweet_infos.user_name}</p>
+        <p class="Tweet_time">${tweet_infos.iat}</p>
+        <p class="mt-[2vw]">${tweet_infos.description}</p>
         <article >
-          <button onclick="delete_tweet('${tweet_id}')">🗑️</button>
-          <button onclick="openModuleUpdate('${tweet_id}','true' ,'${_one(" textarea", form).value}' , '/image/${image_path.substring(image_path.lastIndexOf("\\") + 1)}')">✏️</button>
+          <button onclick="delete_tweet('${tweet_infos.id}')">🗑️</button>
+          <button onclick="openModuleUpdate('${tweet_infos.id}','true' ,'${tweet_infos.description}' , '/image/${tweet_infos.image}')">✏️</button>
         </article>
-        <img src="/image/${image_path.substring(image_path.lastIndexOf("\\") + 1)}" alt="">
+        <img src="/image/${tweet_infos.image}" alt="">
       </section>
     `
   } else {
     tweet = `
-    <section class="tweet" id="${tweet_id}">
-    <p class="Tweet_time">${tweet_iat}</p>
-    <p class="mt-[2vw]">${_one("textarea", form).value}</p>
+    <section class="tweet" id="${tweet_infos.id}">
+    <p>@${tweet_infos.user_name}</p>
+    <p class="Tweet_time">${tweet_infos.iat}</p>
+    <p class="mt-[2vw]">${tweet_infos.description}</p>
     <article >
-      <button onclick="delete_tweet('${tweet_id}')">🗑️</button>
-      <button onclick="openModuleUpdate('${tweet_id}','false' ,'${_one(" textarea", form).value}')">✏️</button>
+      <button onclick="delete_tweet('${tweet_infos.id}')">🗑️</button>
+      <button onclick="openModuleUpdate('${tweet_infos.id}','false' ,'${tweet_infos.description}')">✏️</button>
     </article>
   </section>
     `
@@ -163,6 +174,7 @@ async function updateTweet() {
       if (tweet.image) {
         const tweet_template = `
           <section class="tweet" id="${tweet.id}">
+          <p>@${tweet.user_name}</p>
           <p class="Tweet_time">${tweet.iat}</p>
           <p>${tweet.description}</p>
           <article>
@@ -178,6 +190,7 @@ async function updateTweet() {
       } else {
         const tweet_template = `
             <section class="tweet" id="${tweet.id}">
+            <p>@${tweet.user_name}</p>
             <p class="Tweet_time">${tweet.iat}</p>
             <p>${tweet.description}</p>
             <article>

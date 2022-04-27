@@ -31,6 +31,7 @@
       % if user_id == tweet["user_id"]:
       % if not tweet["image"] :
       <section class="tweet" id="{{tweet['id']}}">
+        <p>@{{tweet["user_name"]}}</p>
         <p class="Tweet_time">{{tweet["iat"]}}</p>
         <p>{{tweet["description"]}} </p>
         <article>
@@ -41,6 +42,7 @@
 
       % else :
       <section class="tweet">
+        <p>@{{tweet["user_name"]}}</p>
         <p class="Tweet_time">{{tweet["iat"]}}</p>
         <p>{{tweet["description"]}} </p>
         <article>
@@ -66,7 +68,7 @@
 <div id="updating_module" class="fixed bg-black bg-opacity-30 w-full h-full top-0 hidden">
   <div id="close_update" class="absolute top-[15.5vw]  right-[25.5vw] cursor-pointer">❌</div>
   <form onsubmit="validate(updateTweet); return false  "
-    class="w-6/12 mx-auto bg-white rounded-lg h-[30vh] mt-[15vw] grid">
+    class="w-6/12 mx-auto bg-white rounded-lg h-auto mt-[15vw] grid">
     <div id="tweet_id_div" class="hidden">
       <input type="text" name="tweet_id">
     </div>

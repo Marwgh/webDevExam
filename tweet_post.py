@@ -54,12 +54,12 @@ def _():
         
 
 
-        tweet={ "description" : description , "id": id , "iat" : issue_time  , "image": image_name , "user_id" :user_info["user_id"]}
+        tweet={ "description" : description , "id": id , "iat" : issue_time  , "image": image_name , "user_id" :user_info["user_id"] , "user_name" : user_info["user_name"] }
         g.TWEETS.append(tweet)
 
         is_image = "true"
         response.status = 200
-        return id , is_image  , issue_time 
+        return dict( tweet = tweet , is_image = is_image  )
 
 
       is_image = "fals"
@@ -68,11 +68,11 @@ def _():
       id = str(uuid.uuid4())
       issue_time = time.ctime( int(time.time()) )
 
-      tweet={ "description" : description , "id": id , "iat" : issue_time ,"image": ""  , "user_id" :user_info["user_id"]}
+      tweet={ "description" : description , "id": id , "iat" : issue_time ,"image": ""  , "user_id" :user_info["user_id"]  , "user_name" : user_info["user_name"]}
       g.TWEETS.append(tweet)
 
       response.status = 200
-      return id  , is_image , issue_time
+      return dict(tweet = tweet , is_image = is_image )
 
 
     except Exception as ex:

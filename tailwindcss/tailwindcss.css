@@ -12,7 +12,8 @@
 
 .tweet {
   width: 37vw;
-  height: 10vw;
+  min-height: 10vh;
+  height: auto;
   background: rgb(63, 63, 63);
   margin: auto;
   padding: 0.5vw;
@@ -31,6 +32,10 @@
   color: grey;
 }
 
+.tweet .Tweet_time~p {
+  color: rgba(255, 255, 255, 0.6);
+}
+
 .tweet article {
   display: flex;
   position: absolute;
@@ -42,4 +47,10 @@
   width: 10vw;
   height: auto;
   margin-top: 0.5vw;
+  margin-inline: auto;
+}
+
+.error_p {
+  color: red;
+  display: none;
 }
