@@ -54,7 +54,7 @@ def _():
         
 
 
-        tweet={ "description" : description , "id": id , "iat" : issue_time  , "image": image_name , "user_id" :user_info["user_id"] , "user_name" : user_info["user_name"] }
+        tweet={ "description" : description , "id": id , "iat" : issue_time  , "image": image_name , "user_id" :user_info["user_id"] , "user_name" : user_info["user_name"] , "fake" : user_info["fake"] }
         g.TWEETS.append(tweet)
 
         is_image = "true"
@@ -68,7 +68,7 @@ def _():
       id = str(uuid.uuid4())
       issue_time = time.ctime( int(time.time()) )
 
-      tweet={ "description" : description , "id": id , "iat" : issue_time ,"image": ""  , "user_id" :user_info["user_id"]  , "user_name" : user_info["user_name"]}
+      tweet={ "description" : description , "id": id , "iat" : issue_time ,"image": ""  , "user_id" :user_info["user_id"]  , "user_name" : user_info["user_name"] , "fake" : user_info["fake"]}
       g.TWEETS.append(tweet)
 
       response.status = 200

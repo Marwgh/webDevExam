@@ -19,7 +19,7 @@ async function signUp() {
     return
   }
 
-  connection_text = await connection.text();
+  const connection_text = await connection.text();
   console.log(connection_text)
   if (connection_text == "valide") {
     window.location.href = "/login";
@@ -50,7 +50,7 @@ async function logIn() {
 
 
 
-  connection_text = await connection.text();
+  const connection_text = await connection.text();
   console.log(connection_text)
   window.location.href = connection_text;
 
@@ -111,16 +111,30 @@ async function sendTweet() {
   const connection_text = await connection.text();/* tweet id text*/
   const connection_object = JSON.parse(connection_text);
   const tweet_infos = connection_object.tweet;
-  console.log(connection_object.user_name);
-  const tweet_id = connection_text.slice(0, 36);
-  const tweet_image = connection_text.slice(36, 40);
-  const tweet_iat = connection_text.slice(40)
-  console.log(connection_text, tweet_id, tweet_image, tweet_iat);
+  console.log(connection_object);
 
   /*SUCCES*/
   let tweet = ''
   if (connection_object.is_image == "true") {
-    tweet = `
+    if (tweet_infos.fake == "true") {
+      tweet = `
+    <section
+        class="tweet" id="${tweet_infos.id}">
+        <div>
+          <p>@${tweet_infos.user_name}</p>
+          <img src="/svg/fakeBadge.svg" alt="" class="checkMark">
+        </div>
+        <p class="Tweet_time">${tweet_infos.iat}</p>
+        <p class="mt-[2vw]">${tweet_infos.description}</p>
+        <article >
+          <button onclick="delete_tweet('${tweet_infos.id}')">🗑️</button>
+          <button onclick="openModuleUpdate('${tweet_infos.id}','true' ,'${tweet_infos.description}' , '/image/${tweet_infos.image}')">✏️</button>
+        </article>
+        <img src="/image/${tweet_infos.image}" alt="">
+      </section>
+    `
+    } else {
+      tweet = `
     <section
         class="tweet" id="${tweet_infos.id}">
         <p>@${tweet_infos.user_name}</p>
@@ -133,8 +147,26 @@ async function sendTweet() {
         <img src="/image/${tweet_infos.image}" alt="">
       </section>
     `
+    }
+
   } else {
-    tweet = `
+    if (tweet_infos.fake == "true") {
+      tweet = `
+    <section class="tweet" id="${tweet_infos.id}">
+    <div>
+      <p>@${tweet_infos.user_name}</p>
+      <img src="/svg/fakeBadge.svg" alt="" class="checkMark">
+    </div>
+    <p class="Tweet_time">${tweet_infos.iat}</p>
+    <p class="mt-[2vw]">${tweet_infos.description}</p>
+    <article >
+      <button onclick="delete_tweet('${tweet_infos.id}')">🗑️</button>
+      <button onclick="openModuleUpdate('${tweet_infos.id}','false' ,'${tweet_infos.description}')">✏️</button>
+    </article>
+  </section>
+    `
+    } else {
+      tweet = `
     <section class="tweet" id="${tweet_infos.id}">
     <p>@${tweet_infos.user_name}</p>
     <p class="Tweet_time">${tweet_infos.iat}</p>
@@ -145,6 +177,8 @@ async function sendTweet() {
     </article>
   </section>
     `
+    }
+
   }
 
   _one("#tweets").insertAdjacentHTML("afterbegin", tweet);
@@ -214,9 +248,29 @@ async function updateTweet() {
 
 }
 
+async function verifyFakeness(user_id) {
+  target = event.target
+  console.log(target);
+  const connection = await fetch(`/verify/${user_id}`, {
+    method: "PUT",
+  })
+
+  if (!connection.ok) {
+    return
+  }
+
+  const connection_text = await connection.text();
+  console.log(connection_text)
+  if (connection_text == "you have been made a real fake") {
+    target.style.filter = "grayscale(0%)";
+    window.location.href = "/adminPanel";
+  } else {
+    target.style.filter = "grayscale(100%)";
+    window.location.href = "/adminPanel";
+  }
 
 
-
+}
 
 function openModuleUpdate(tweet_id, is_image, tweet_text, image_path) {
   console.log(tweet_id, is_image, tweet_text, image_path)
@@ -241,7 +295,6 @@ function openModuleUpdate(tweet_id, is_image, tweet_text, image_path) {
   document.getElementById("close_update").addEventListener("click", closeModuleUpdate);
 
 }
-
 
 function closeModuleUpdate() {
   _one("#updating_module").style.display = " none";

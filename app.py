@@ -13,6 +13,7 @@ import login_post                                          #POST
 import logout_post                                         #POST
 
 import tweet_put                                           #PUT
+import verify_put                                          #PUT
 
 import admin_get                                           #GET
 import signup_get                                          #GET
@@ -56,6 +57,11 @@ def _():
 @get("/image/<image_name>")
 def _(image_name):
   return static_file(image_name, root="./image")
+
+#################################################################
+@get("/svg/<svg_name>")
+def _(svg_name):
+  return static_file(svg_name, root="./svg")
 
 
 try:

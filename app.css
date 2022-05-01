@@ -553,6 +553,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-top: 15vw;
 }
 
+.mt-1 {
+  margin-top: 0.25rem;
+}
+
+.flex {
+  display: flex;
+}
+
 .grid {
   display: grid;
 }
@@ -565,8 +573,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 90vh;
 }
 
-.h-full {
-  height: 100%;
+.h-\[10vh\] {
+  height: 10vh;
+}
+
+.h-\[80vh\] {
+  height: 80vh;
 }
 
 .h-\[2vh\] {
@@ -577,16 +589,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 8vh;
 }
 
-.h-\[10vh\] {
-  height: 10vh;
-}
-
-.h-\[80vh\] {
-  height: 80vh;
-}
-
 .h-\[40vh\] {
   height: 40vh;
+}
+
+.h-\[42vh\] {
+  height: 42vh;
 }
 
 .h-20 {
@@ -605,12 +613,20 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 2vw;
 }
 
+.h-full {
+  height: 100%;
+}
+
 .h-auto {
   height: auto;
 }
 
 .w-5\/12 {
   width: 41.666667%;
+}
+
+.w-11\/12 {
+  width: 91.666667%;
 }
 
 .w-full {
@@ -631,6 +647,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-6\/12 {
   width: 50%;
+}
+
+.w-4 {
+  width: 1rem;
+}
+
+.w-5 {
+  width: 1.25rem;
 }
 
 .cursor-pointer {
@@ -723,10 +747,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding: 1vw;
 }
 
-.pt-\[7vw\] {
-  padding-top: 7vw;
-}
-
 .pt-\[5vw\] {
   padding-top: 5vw;
 }
@@ -793,6 +813,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(107 114 128 / var(--tw-placeholder-opacity));
 }
 
+.grayscale {
+  --tw-grayscale: grayscale(100%);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;900&display=swap');
 
 * {
@@ -800,7 +825,7 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 .tweet {
-  width: 37vw;
+  width: 90%;
   min-height: 10vh;
   height: auto;
   background: rgb(63, 63, 63);
@@ -808,7 +833,7 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding: 0.5vw;
   border-radius: 0.5vw;
   position: relative;
-  margin: 1vw;
+  margin-top: 1vw;
   color: white;
 }
 
@@ -832,16 +857,46 @@ Ensure the default browser behavior of the `hidden` attribute.
   right: 0.5vw;
 }
 
-.tweet img {
+.tweet>img {
   width: 10vw;
   height: auto;
   margin-top: 0.5vw;
   margin-inline: auto;
 }
 
+.tweet>div {
+  display: flex;
+}
+
+.tweet .checkMark {
+  width: 1.3vw;
+  height: auto;
+  padding-left: 0.5vw;
+}
+
 .error_p {
   color: red;
   display: none;
+}
+
+.verificationSection {
+  padding: 1vw;
+  margin-top: 1vw;
+  border-radius: 1vw;
+  background-color: rgb(168 85 247 / 0.25);
+}
+
+.verificationSection>div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.verificationSection img {
+  height: 5vw;
+  width: auto;
+  cursor: pointer;
+  border-radius: 100%;
 }
 
 .hover\:scale-110:hover {

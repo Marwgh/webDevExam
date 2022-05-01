@@ -10,22 +10,45 @@
   <div class="h-[10vh]"></div>
   <div class="  h-[80vh] overflow-y-scroll">
     % for user in users :
-    <div id="{{user['id']}}" class="bg-purple-500  bg-opacity-25 rounded-lg ">
+    <div id="{{user['id']}}" class="bg-purple-500  bg-opacity-25 rounded-lg  w-11/12 mx-auto mt-1 ">
+      % if user["fake"] == "true" :
+      <div class="flex">
+        <p>@{{user["name"]}}</p>
+        <img src="/svg/fakeBadge.svg" alt="" class="w-5">
+      </div>
+      % else:
       <p>@{{user["name"]}}</p>
+      % end
+
       <div>
 
         % for tweet in tweets:
         % if user["id"] == tweet["user_id"]:
         % if not tweet["image"] :
         <section class="tweet" id="{{tweet['id']}}">
+          % if tweet["fake"] == "true" :
+          <div>
+            <p>@{{tweet["user_name"]}}</p>
+            <img src="/svg/fakeBadge.svg" alt="" class="checkMark">
+          </div>
+          % else:
           <p>@{{tweet["user_name"]}}</p>
+          % end
           <p class="Tweet_time">{{tweet["iat"]}}</p>
           <p>{{tweet["description"]}} </p>
+
         </section>
 
         % else :
         <section class="tweet">
+          % if tweet["fake"] == "true" :
+          <div>
+            <p>@{{tweet["user_name"]}}</p>
+            <img src="/svg/fakeBadge.svg" alt="" class="checkMark">
+          </div>
+          % else:
           <p>@{{tweet["user_name"]}}</p>
+          % end
           <p class="Tweet_time">{{tweet["iat"]}}</p>
           <p>{{tweet["description"]}} </p>
           <img src="/image/{{tweet['image']}}" alt="">

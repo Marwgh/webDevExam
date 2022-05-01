@@ -5,13 +5,23 @@
   <h1 class="absolute left-[-15vw] top-[2vw] text-[3vw]">
     Welcom to the admin panel
   </h1>
+  <div class="h-[10vh]"></div>
 
-  <div class="pt-[7vw] overflow-y-scroll h-full">
+  <div class=" overflow-y-scroll h-[80vh]">
     % for tweet in tweets:
     % if not tweet["image"] :
     <section class="tweet" id="{{tweet['id']}}">
+      % if tweet["fake"] == "true" :
+      <div>
+        <p>@{{tweet["user_name"]}}</p>
+        <img src="/svg/fakeBadge.svg" alt="" class="checkMark">
+      </div>
+      % else:
+      <p>@{{tweet["user_name"]}}</p>
+      % end
       <p class="Tweet_time">{{tweet["iat"]}}</p>
       <p>{{tweet["description"]}} </p>
+
       <article>
         <button onclick="delete_tweet(`{{tweet['id']}}`)">🗑️</button>
       </article>
@@ -20,6 +30,14 @@
 
     % else :
     <section class="tweet" id="{{tweet['id']}}">
+      % if tweet["fake"] == "true" :
+      <div>
+        <p>@{{tweet["user_name"]}}</p>
+        <img src="/svg/fakeBadge.svg" alt="" class="checkMark">
+      </div>
+      % else:
+      <p>@{{tweet["user_name"]}}</p>
+      % end
       <p class="Tweet_time">{{tweet["iat"]}}</p>
       <p>{{tweet["description"]}} </p>
       <img src="/image/{{tweet['image']}}" alt="">
@@ -28,6 +46,19 @@
       </article>
     </section>
     % end
+    % end
+
+    % for user in users :
+    <section class="verificationSection mx-auto w-11/12">
+      <div>
+        <p>{{user["name"]}}</p>
+        % if user["fake"] == "true" :
+        <img src="/svg/fakeBadge.svg" alt="" onclick="verifyFakeness(`{{user['id']}}`)">
+        % else :
+        <img src="/svg/fakeBadge.svg" alt="" onclick="verifyFakeness(`{{user['id']}}`)" class="grayscale">
+        % end
+      </div>
+    </section>
     % end
   </div>
 </main>

@@ -31,7 +31,14 @@
       % if user_id == tweet["user_id"]:
       % if not tweet["image"] :
       <section class="tweet" id="{{tweet['id']}}">
+        % if tweet["fake"] == "true" :
+        <div>
+          <p>@{{tweet["user_name"]}}</p>
+          <img src="/svg/fakeBadge.svg" alt="" class="checkMark">
+        </div>
+        % else:
         <p>@{{tweet["user_name"]}}</p>
+        % end
         <p class="Tweet_time">{{tweet["iat"]}}</p>
         <p>{{tweet["description"]}} </p>
         <article>
@@ -42,7 +49,14 @@
 
       % else :
       <section class="tweet">
+        % if tweet["fake"] == "true" :
+        <div>
+          <p>@{{tweet["user_name"]}}</p>
+          <img src="/svg/fakeBadge.svg" alt="" class="checkMark">
+        </div>
+        % else:
         <p>@{{tweet["user_name"]}}</p>
+        % end
         <p class="Tweet_time">{{tweet["iat"]}}</p>
         <p>{{tweet["description"]}} </p>
         <article>

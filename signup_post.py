@@ -35,7 +35,7 @@ def _():
     user_name = request.forms.get("user_name")
     user_password = request.forms.get("user_password")
     user_id = str(uuid.uuid4())
-    user = { "id": user_id , "email":user_email , "name":user_name , "password":user_password}
+    user = { "id": user_id , "email":user_email , "name":user_name , "password":user_password , "fake" : "false"}
     g.USERS.append(user)
     print(g.USERS)
     

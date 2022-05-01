@@ -19,4 +19,4 @@ def _():
 
 
 
-  return dict(tweets = g.TWEETS )
+  return dict(tweets = g.TWEETS , users = g.USERS )
