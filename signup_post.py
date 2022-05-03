@@ -18,6 +18,11 @@ def _():
       response.status = 400
       return redirect("/signup")
 
+  for user in g.USERS :
+    if request.forms.get("user_name") == user["name"]:
+      response.status = 400
+      return redirect("/signup")
+
 
   if not request.forms.get("user_password"):
     response.status = 400
